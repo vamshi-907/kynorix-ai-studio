@@ -117,7 +117,6 @@ export function LightBeams() {
           filter: blurB,
         }}
       />
-
     </div>
   );
 }
