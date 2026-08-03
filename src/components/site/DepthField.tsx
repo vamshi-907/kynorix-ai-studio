@@ -83,7 +83,7 @@ export function DepthField({ className = "" }: { className?: string }) {
               transformStyle: "preserve-3d",
             }}
             initial={{ rotateX: r.rotX, rotateZ: 0 }}
-            animate={reducedMotion ? undefined : { rotateZ: 360 * r.dir }}
+            animate={reducedMotion ? { rotateZ: 0 } : { rotateZ: 360 * r.dir }}
             transition={{ duration: r.dur, repeat: Infinity, ease: "linear" }}
           >
             <span
