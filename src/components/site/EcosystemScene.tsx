@@ -68,7 +68,7 @@ export function EcosystemScene() {
             <motion.div
               key={n.label}
               className="absolute"
-              style={{ left: `${left}%`, top: `${top}%`, x: "-50%", y: "-50%", rotate: useTransform(rotate, (v) => -v) }}
+              style={{ left: `${left}%`, top: `${top}%`, x: "-50%", y: "-50%", rotate: counterRotate }}
               initial={{ opacity: 0, scale: 0.6 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
