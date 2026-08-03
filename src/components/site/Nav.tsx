@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react";
 import { motion, useScroll, useMotionValueEvent } from "motion/react";
+import { Link } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 import logo from "@/assets/kynorix-logo.jpeg.asset.json";
 
 const links = [
-  { label: "About", href: "#about" },
-  { label: "Industries", href: "#industries" },
-  { label: "RetailOS", href: "#product" },
-  { label: "Technology", href: "#technology" },
-  { label: "Global", href: "#global" },
+  { label: "About", href: "/#about" },
+  { label: "Industries", href: "/#industries" },
+  { label: "RetailOS", href: "/#product" },
+  { label: "Technology", href: "/#technology" },
+  { label: "Global", href: "/#global" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export function Nav() {
@@ -36,7 +38,7 @@ export function Nav() {
           scrolled ? "glass-panel" : "border border-transparent"
         }`}
       >
-        <a href="#top" className="flex items-center gap-3">
+        <Link to="/" className="flex items-center gap-3">
           <img
             src={logo.url}
             alt="Kynorix logo"
@@ -47,7 +49,7 @@ export function Nav() {
           <span className="font-display text-lg font-semibold tracking-tight text-navy-deep">
             Kynorix
           </span>
-        </a>
+        </Link>
 
         <div className="hidden items-center gap-8 lg:flex">
           {links.map((l) => (
@@ -62,13 +64,13 @@ export function Nav() {
         </div>
 
         <div className="flex items-center gap-2">
-          <a
-            href="#contact"
+          <Link
+            to="/contact"
             className="hidden rounded-full px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-transform duration-300 hover:-translate-y-0.5 sm:inline-flex"
             style={{ background: "var(--gradient-ink)" }}
           >
             Partner with Us
-          </a>
+          </Link>
           <button
             aria-label={open ? "Close menu" : "Open menu"}
             onClick={() => setOpen((v) => !v)}
