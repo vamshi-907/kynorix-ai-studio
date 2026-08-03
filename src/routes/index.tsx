@@ -1,24 +1,67 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Nav } from "@/components/site/Nav";
+import { Hero } from "@/components/site/Hero";
+import { About } from "@/components/site/About";
+import { Industries } from "@/components/site/Industries";
+import { RetailOS } from "@/components/site/RetailOS";
+import { AITechnology } from "@/components/site/AITechnology";
+import { Innovation } from "@/components/site/Innovation";
+import { GlobalVision } from "@/components/site/GlobalVision";
+import { Stats } from "@/components/site/Stats";
+import { CTA } from "@/components/site/CTA";
+import { Footer } from "@/components/site/Footer";
+import { SmoothScroll } from "@/components/site/SmoothScroll";
+import { CursorGlow } from "@/components/site/CursorGlow";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
+const title = "Kynorix — Engineering the Intelligent Future";
+const description =
+  "Kynorix is an AI-first technology company building intelligent platforms, computer vision and RetailOS for enterprises worldwide.";
+
 export const Route = createFileRoute("/")({
   component: Index,
+  head: () => ({
+    meta: [
+      { title },
+      { name: "description", content: description },
+      { property: "og:title", content: title },
+      { property: "og:description", content: description },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "/" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+    links: [{ rel: "canonical", href: "/" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          name: "Kynorix",
+          slogan: "Engineering the Intelligent Future",
+          description,
+          areaServed: ["India", "United Arab Emirates", "Singapore", "Europe", "USA", "Australia"],
+        }),
+      },
+    ],
+  }),
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <main id="top" className="relative overflow-x-hidden bg-background">
+      <SmoothScroll />
+      <CursorGlow />
+      <Nav />
+      <Hero />
+      <About />
+      <Industries />
+      <RetailOS />
+      <AITechnology />
+      <Innovation />
+      <GlobalVision />
+      <Stats />
+      <CTA />
+      <Footer />
+    </main>
   );
 }
