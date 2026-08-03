@@ -12,7 +12,7 @@ const nav = [
 ];
 
 const socials = [
-  { label: "LinkedIn", icon: Linkedin, href: "https://www.linkedin.com" },
+  { label: "LinkedIn", icon: Linkedin, href: "https://www.linkedin.com/company/kynorix/" },
   { label: "X", icon: Twitter, href: "https://x.com" },
   { label: "GitHub", icon: Github, href: "https://github.com" },
 ];
