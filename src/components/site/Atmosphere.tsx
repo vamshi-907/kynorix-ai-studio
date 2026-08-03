@@ -101,22 +101,23 @@ export function LightBeams() {
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
       <div
-        className="absolute -left-1/4 top-[-30%] h-[160%] w-[45%] rotate-12" + drift + "
+        className={`absolute -left-1/4 top-[-30%] h-[160%] w-[45%] rotate-12${drift}`}
         style={{
           background:
             "linear-gradient(90deg, transparent, color-mix(in oklab, var(--electric-soft) 22%, transparent), transparent)",
-          filter: "blur(60px)",
+          filter: blurA,
         }}
       />
       <div
-        className="absolute right-[-10%] top-[-20%] h-[150%] w-[35%] -rotate-6 animate-drift"
+        className={`absolute right-[-10%] top-[-20%] h-[150%] w-[35%] -rotate-6${drift}`}
         style={{
           animationDelay: "-8s",
           background:
             "linear-gradient(90deg, transparent, color-mix(in oklab, var(--electric) 14%, transparent), transparent)",
-          filter: "blur(70px)",
+          filter: blurB,
         }}
       />
+
     </div>
   );
 }
