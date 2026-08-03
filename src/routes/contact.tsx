@@ -102,7 +102,7 @@ function ContactPage() {
 
         <Section className="pt-40 md:pt-48">
           <div className="relative overflow-hidden rounded-[2.5rem] px-6 py-16 md:px-14 md:py-20">
-            <DepthField />
+            <DepthField className="opacity-50" />
             <div className="relative">
               <Reveal>
                 <Eyebrow>Contact</Eyebrow>
