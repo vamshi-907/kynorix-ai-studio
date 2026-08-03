@@ -28,20 +28,21 @@ function Meter({ delay }: { delay: number }) {
   }, [inView, delay]);
 
   return (
-    <div ref={ref} className="mt-6">
+    <div ref={ref} className="mt-8">
       <div className="h-1 w-full overflow-hidden rounded-full bg-secondary">
         <div
-          className="h-full rounded-full transition-[width] duration-200 ease-out"
+          className="h-full rounded-full"
           style={{ width: `${value}%`, background: "var(--gradient-electric)" }}
         />
       </div>
-      <span className="mt-3 block font-display text-3xl font-semibold text-navy-deep">
-        {value}
-        <span className="text-accent">%</span>
+      <span className="mt-4 flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-accent">
+        <span className="size-1.5 rounded-full bg-accent animate-pulse-soft" />
+        Active
       </span>
     </div>
   );
 }
+
 
 export function Stats() {
   return (
