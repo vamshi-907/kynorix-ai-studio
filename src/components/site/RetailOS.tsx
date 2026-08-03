@@ -49,7 +49,7 @@ const modules = [
 ];
 
 export function RetailOS() {
-  const [active, setActive] = useState(modules[0]);
+  const [active, setActive] = useState(modules[0]!);
   const ActiveIcon = active.icon;
 
   return (
