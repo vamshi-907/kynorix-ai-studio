@@ -3,7 +3,7 @@ import { MotionConfig, motion } from "motion/react";
 import { ArrowLeft, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
-import { Atmosphere } from "@/components/site/Atmosphere";
+import { LightBeams, NeuralField } from "@/components/site/Atmosphere";
 import { DepthField } from "@/components/site/DepthField";
 import { Reveal, Section, Eyebrow, GlassCard } from "@/components/site/primitives";
 import { CONTACT, mailto } from "@/lib/contact";
@@ -94,7 +94,10 @@ function ContactPage() {
   return (
     <MotionConfig reducedMotion="user">
       <main className="relative overflow-x-hidden bg-background">
-        <Atmosphere />
+        <LightBeams />
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-[60vh] opacity-70">
+          <NeuralField count={18} />
+        </div>
         <Nav />
 
         <Section className="pt-40 md:pt-48">
