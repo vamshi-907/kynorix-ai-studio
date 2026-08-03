@@ -26,7 +26,9 @@ export function EcosystemScene() {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
   const rotate = useTransform(scrollYProgress, [0, 1], [0, 55]);
+  const counterRotate = useTransform(rotate, (v) => -v);
   const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.94, 1, 0.94]);
+
 
   const orbit = nodes.filter((n) => n.r === 1);
 
