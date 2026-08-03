@@ -10,9 +10,9 @@ function seeded(n: number) {
 export function NeuralField({ count = 26 }: { count?: number }) {
   const { nodes, links } = useMemo(() => {
     const nodes: Node[] = Array.from({ length: count }, (_, i) => ({
-      x: 60 + seeded(i * 3.1) * 680,
-      y: 60 + seeded(i * 7.7) * 680,
-      r: 1.6 + seeded(i * 1.3) * 3.4,
+      x: Math.round((60 + seeded(i * 3.1) * 680) * 100) / 100,
+      y: Math.round((60 + seeded(i * 7.7) * 680) * 100) / 100,
+      r: Math.round((1.6 + seeded(i * 1.3) * 3.4) * 100) / 100,
     }));
     const links: [Node, Node][] = [];
     nodes.forEach((a, i) => {
@@ -56,11 +56,11 @@ export function Particles({ count = 22 }: { count?: number }) {
   const dots = useMemo(
     () =>
       Array.from({ length: count }, (_, i) => ({
-        left: `${seeded(i * 2.3) * 100}%`,
-        top: `${seeded(i * 5.9) * 100}%`,
-        size: 3 + seeded(i * 9.1) * 6,
-        delay: `${seeded(i * 4.4) * 8}s`,
-        duration: `${8 + seeded(i * 6.6) * 10}s`,
+        left: `${(seeded(i * 2.3) * 100).toFixed(2)}%`,
+        top: `${(seeded(i * 5.9) * 100).toFixed(2)}%`,
+        size: `${(3 + seeded(i * 9.1) * 6).toFixed(2)}px`,
+        delay: `${(seeded(i * 4.4) * 8).toFixed(2)}s`,
+        duration: `${(8 + seeded(i * 6.6) * 10).toFixed(2)}s`,
       })),
     [count],
   );
