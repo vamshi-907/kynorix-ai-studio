@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+import { useQuality } from "@/hooks/use-quality";
 
 type Node = { x: number; y: number; r: number };
 
@@ -8,8 +9,10 @@ function seeded(n: number) {
 }
 
 export function NeuralField({ count = 26 }: { count?: number }) {
+  const { density, reducedMotion } = useQuality();
+  const resolved = Math.max(6, Math.round(count * density));
   const { nodes, links } = useMemo(() => {
-    const nodes: Node[] = Array.from({ length: count }, (_, i) => ({
+    const nodes: Node[] = Array.from({ length: resolved }, (_, i) => ({
       x: Math.round((60 + seeded(i * 3.1) * 680) * 100) / 100,
       y: Math.round((60 + seeded(i * 7.7) * 680) * 100) / 100,
       r: Math.round((1.6 + seeded(i * 1.3) * 3.4) * 100) / 100,
@@ -22,12 +25,12 @@ export function NeuralField({ count = 26 }: { count?: number }) {
       });
     });
     return { nodes, links };
-  }, [count]);
+  }, [resolved]);
 
   return (
     <svg
       viewBox="0 0 800 800"
-      className="size-full animate-spin-slow"
+      className={`size-full ${reducedMotion ? "" : "animate-spin-slow"}`}
       aria-hidden="true"
       style={{ transformOrigin: "50% 50%" }}
     >
@@ -43,7 +46,7 @@ export function NeuralField({ count = 26 }: { count?: number }) {
             cx={n.x}
             cy={n.y}
             r={n.r}
-            className="animate-pulse-soft"
+            className={reducedMotion ? undefined : "animate-pulse-soft"}
             style={{ animationDelay: `${(i % 7) * 0.4}s` }}
           />
         ))}
@@ -53,16 +56,18 @@ export function NeuralField({ count = 26 }: { count?: number }) {
 }
 
 export function Particles({ count = 22 }: { count?: number }) {
+  const { density, reducedMotion, tier } = useQuality();
+  const resolved = tier === "low" ? 0 : Math.max(4, Math.round(count * density));
   const dots = useMemo(
     () =>
-      Array.from({ length: count }, (_, i) => ({
+      Array.from({ length: resolved }, (_, i) => ({
         left: `${(seeded(i * 2.3) * 100).toFixed(2)}%`,
         top: `${(seeded(i * 5.9) * 100).toFixed(2)}%`,
         size: `${(3 + seeded(i * 9.1) * 6).toFixed(2)}px`,
         delay: `${(seeded(i * 4.4) * 8).toFixed(2)}s`,
         duration: `${(8 + seeded(i * 6.6) * 10).toFixed(2)}s`,
       })),
-    [count],
+    [resolved],
   );
 
   return (
@@ -70,7 +75,7 @@ export function Particles({ count = 22 }: { count?: number }) {
       {dots.map((d, i) => (
         <span
           key={i}
-          className="absolute rounded-full animate-float"
+          className={`absolute rounded-full${reducedMotion ? "" : " animate-float"}`}
           style={{
             left: d.left,
             top: d.top,
@@ -88,23 +93,28 @@ export function Particles({ count = 22 }: { count?: number }) {
 }
 
 export function LightBeams() {
+  const { allowHeavyEffects, reducedMotion, tier } = useQuality();
+  if (tier === "low") return null;
+  const drift = reducedMotion ? "" : " animate-drift";
+  const blurA = allowHeavyEffects ? "blur(60px)" : "blur(32px)";
+  const blurB = allowHeavyEffects ? "blur(70px)" : "blur(36px)";
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
       <div
-        className="absolute -left-1/4 top-[-30%] h-[160%] w-[45%] rotate-12 animate-drift"
+        className={`absolute -left-1/4 top-[-30%] h-[160%] w-[45%] rotate-12${drift}`}
         style={{
           background:
             "linear-gradient(90deg, transparent, color-mix(in oklab, var(--electric-soft) 22%, transparent), transparent)",
-          filter: "blur(60px)",
+          filter: blurA,
         }}
       />
       <div
-        className="absolute right-[-10%] top-[-20%] h-[150%] w-[35%] -rotate-6 animate-drift"
+        className={`absolute right-[-10%] top-[-20%] h-[150%] w-[35%] -rotate-6${drift}`}
         style={{
           animationDelay: "-8s",
           background:
             "linear-gradient(90deg, transparent, color-mix(in oklab, var(--electric) 14%, transparent), transparent)",
-          filter: "blur(70px)",
+          filter: blurB,
         }}
       />
     </div>
