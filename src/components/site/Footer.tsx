@@ -1,6 +1,6 @@
 import { Linkedin, Twitter, Github, Mail, Phone } from "lucide-react";
 import { CONTACT, mailto } from "@/lib/contact";
-import logo from "@/assets/kynorix-logo.jpeg.asset.json";
+import logo from "@/assets/kynorix-logo.jpeg";
 
 const nav = [
   { label: "About", href: "/#about" },
@@ -25,7 +25,7 @@ export function Footer() {
           <div className="max-w-xs">
             <div className="flex items-center gap-3">
               <img
-                src={logo.url}
+                src={logo}
                 alt="Kynorix logo"
                 className="size-9 rounded-xl object-cover"
                 width={36}

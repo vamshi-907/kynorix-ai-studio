@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { motion, useScroll, useMotionValueEvent } from "motion/react";
 import { Link } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
-import logo from "@/assets/kynorix-logo.jpeg.asset.json";
+import logo from "@/assets/kynorix-logo.jpeg";
 
 const links = [
   { label: "About", href: "/#about" },
@@ -40,7 +40,7 @@ export function Nav() {
       >
         <Link to="/" className="flex items-center gap-3">
           <img
-            src={logo.url}
+            src={logo}
             alt="Kynorix logo"
             className="size-9 rounded-xl object-cover"
             width={36}
