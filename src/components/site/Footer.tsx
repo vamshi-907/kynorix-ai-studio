@@ -1,12 +1,14 @@
-import { Linkedin, Twitter, Github, Mail } from "lucide-react";
+import { Linkedin, Twitter, Github, Mail, Phone } from "lucide-react";
+import { CONTACT, mailto } from "@/lib/contact";
 import logo from "@/assets/kynorix-logo.jpeg.asset.json";
 
 const nav = [
-  { label: "About", href: "#about" },
-  { label: "Industries", href: "#industries" },
-  { label: "RetailOS", href: "#product" },
-  { label: "Technology", href: "#technology" },
-  { label: "Global Vision", href: "#global" },
+  { label: "About", href: "/#about" },
+  { label: "Industries", href: "/#industries" },
+  { label: "RetailOS", href: "/#product" },
+  { label: "Technology", href: "/#technology" },
+  { label: "Global Vision", href: "/#global" },
+  { label: "Contact", href: "/contact" },
 ];
 
 const socials = [
@@ -50,11 +52,18 @@ export function Footer() {
 
           <div className="flex flex-col gap-4">
             <a
-              href="mailto:hello@kynorix.com"
+              href={mailto("Partner with Kynorix")}
               className="inline-flex items-center gap-2 text-sm font-medium text-navy-deep transition-colors hover:text-accent"
             >
               <Mail className="size-4 text-accent" />
-              hello@kynorix.com
+              {CONTACT.email}
+            </a>
+            <a
+              href={CONTACT.phoneHref}
+              className="inline-flex items-center gap-2 text-sm font-medium text-navy-deep transition-colors hover:text-accent"
+            >
+              <Phone className="size-4 text-accent" />
+              {CONTACT.phone}
             </a>
             <div className="flex gap-3">
               {socials.map((s) => {
