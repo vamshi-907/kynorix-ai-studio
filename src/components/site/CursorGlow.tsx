@@ -1,9 +1,12 @@
 import { useEffect, useRef } from "react";
+import { useQuality } from "@/hooks/use-quality";
 
 export function CursorGlow() {
   const ref = useRef<HTMLDivElement>(null);
+  const { allowHeavyEffects } = useQuality();
 
   useEffect(() => {
+    if (!allowHeavyEffects) return;
     if (window.matchMedia("(pointer: coarse)").matches) return;
     const el = ref.current;
     if (!el) return;
@@ -29,7 +32,9 @@ export function CursorGlow() {
       window.removeEventListener("mousemove", onMove);
       cancelAnimationFrame(raf);
     };
-  }, []);
+  }, [allowHeavyEffects]);
+
+  if (!allowHeavyEffects) return null;
 
   return (
     <div className="pointer-events-none fixed inset-0 z-[60] hidden overflow-hidden md:block">
