@@ -3,6 +3,7 @@ import { useRef } from "react";
 import { ArrowRight, CalendarDays } from "lucide-react";
 import { EcosystemScene } from "./EcosystemScene";
 import { LightBeams, NeuralField, Particles } from "./Atmosphere";
+import { DepthField } from "./DepthField";
 import { easeOutExpo } from "./primitives";
 
 export function Hero() {
@@ -19,6 +20,7 @@ export function Hero() {
       <div className="pointer-events-none absolute left-1/2 top-1/2 size-[900px] -translate-x-1/2 -translate-y-1/2 opacity-[0.55]">
         <NeuralField />
       </div>
+      <DepthField className="opacity-60" />
       <Particles />
 
       <motion.div
